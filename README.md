@@ -1,0 +1,1 @@
+# explorador_interactivo_2026_2
