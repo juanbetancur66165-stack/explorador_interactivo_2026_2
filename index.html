@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explorador de Rick and Morty</title>
+
+    <meta name="description"
+          content="Explora personajes de la serie Rick and Morty y descubre información sobre ellos.">
+
+    <meta property="og:title" content="Explorador de Rick and Morty">
+    <meta property="og:description"
+          content="Explora personajes, especies y estados del universo de Rick and Morty.">
+    <meta property="og:type" content="website">
+    <meta property="og:image"
+          content="https://rickandmortyapi.com/api/character/avatar/1.jpeg">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Explorador de Rick and Morty</h1>
+        <p>
+           Conoce personajes, descubre datos curiosos y viaja por las dimensiones del universo de Rick and Morty.
+        </p>
+    </header>
+
+    
+    <nav>
+       <li><a href="#inicio"> Inicio</a></li>
+        <li><a href="#favoritos"> Favoritos</a></li>
+        <li><a href="#acerca"> Acerca de</a></li>
+    </nav>
+
+    <main id="inicio">
+
+        <section>
+            <h2>Buscar personajes</h2>
+
+            <form>
+
+                <label for="busqueda">
+                    Buscar personaje:
+                </label>
+
+                <input
+                    type="text"
+                    id="busqueda"
+                    name="busqueda"
+                    placeholder="Ejemplo: Rick">
+
+                <label for="filtro">
+                    Filtrar por estado:
+                </label>
+
+                <select id="filtro" name="filtro">
+
+                    <option value="">
+                        Todos los estados
+                    </option>
+
+                    <option value="alive">
+                        Vivo
+                    </option>
+
+                    <option value="dead">
+                        Muerto
+                    </option>
+
+                    <option value="unknown">
+                        Desconocido
+                    </option>
+
+                </select>
+
+                <button type="submit">
+                    Buscar
+                </button>
+
+            </form>
+        </section>
+
+        
+            <h2>Personajes</h2>
+
+            <article>
+                <h3>Rick Sanchez</h3>
+
+                <p>
+                    Estado: Vivo. Rick es un científico extremadamente
+                    inteligente y uno de los personajes principales
+                    de la serie.
+                </p>
+
+                <img
+                    src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                    alt="Rick Sanchez"
+                    width="300">
+
+            </article>
+
+            <article>
+                <h3>Morty Smith</h3>
+
+                <p>
+                    Estado: Vivo. Morty es el nieto de Rick y suele
+                    acompañarlo en sus aventuras interdimensionales.
+                </p>
+
+                <img
+                    src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+                    alt="Morty Smith"
+                    width="300">
+
+            </article>
+
+            <article>
+                <h3>Summer Smith</h3>
+
+                <p>
+                    Estado: Vivo. Summer es la hermana de Morty y
+                    participa en diferentes aventuras junto a Rick.
+                </p>
+
+                <img
+                    src="https://rickandmortyapi.com/api/character/avatar/3.jpeg"
+                    alt="Summer Smith"
+                    width="300">
+
+            </article>
+
+        </section>
+
+    </main>
+     <footer id="acerca">
+
+        <p>
+            Creado por: Juan Sebastián Betancur Galvis
+        </p>
+
+        <p>
+            Curso: Programación para entornos web
+        </p>
+
+        <p>
+            <a
+                href="https://rickandmortyapi.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                Documentación de Rick and Morty API
+
+            </a>
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
