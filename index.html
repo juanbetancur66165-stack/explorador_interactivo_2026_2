@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,37 +11,69 @@
     <title>Explorador de Rick and Morty</title>
 
     <meta name="description"
-          content="Explora personajes de la serie Rick and Morty y descubre información sobre ellos.">
+        content="Explora personajes de la serie Rick and Morty y descubre información sobre ellos.">
 
     <meta property="og:title" content="Explorador de Rick and Morty">
+
     <meta property="og:description"
-          content="Explora personajes, especies y estados del universo de Rick and Morty.">
+        content="Explora personajes, especies y estados del universo de Rick and Morty.">
+
     <meta property="og:type" content="website">
+
     <meta property="og:image"
-          content="https://rickandmortyapi.com/api/character/avatar/1.jpeg">
+        content="https://rickandmortyapi.com/api/character/avatar/1.jpeg">
+
     <link rel="stylesheet" href="css/estilos.css">
+
 </head>
+
 
 <body>
 
     <header>
+
         <h1>Explorador de Rick and Morty</h1>
+
         <p>
-           Conoce personajes, descubre datos curiosos y viaja por las dimensiones del universo de Rick and Morty.
+            Conoce personajes, descubre datos curiosos y viaja por las
+            dimensiones del universo de Rick and Morty.
         </p>
+
     </header>
 
+
     <nav>
-    <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#favoritos">Favoritos</a></li>
-        <li><a href="#acerca">Acerca de</a></li>
-    </ul>
-</nav>
+
+        <ul>
+
+            <li>
+                <a href="#inicio">
+                    Inicio
+                </a>
+            </li>
+
+            <li>
+                <a href="#personajes">
+                    Personajes
+                </a>
+            </li>
+
+            <li>
+                <a href="#acerca">
+                    Acerca de
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
 
     <main id="inicio">
 
-        <section class="tarjeta">
+
+        <section class="tarjeta busqueda">
+
             <h2>Buscar personajes</h2>
 
             <form>
@@ -54,11 +88,14 @@
                     name="busqueda"
                     placeholder="Ejemplo: Rick">
 
+
                 <label for="filtro">
                     Filtrar por estado:
                 </label>
 
-                <select id="filtro" name="filtro">
+                <select
+                    id="filtro"
+                    name="filtro">
 
                     <option value="">
                         Todos los estados
@@ -78,66 +115,211 @@
 
                 </select>
 
+
                 <button type="submit">
                     Buscar
                 </button>
 
             </form>
+
         </section>
 
-         <section class="tarjeta">
+
+
+        <section
+            id="personajes"
+            class="resultados">
+
             <h2>Personajes</h2>
-    
-            <article>
-                <h3>Rick Sanchez</h3>
 
-                <p>
-                    Estado: Vivo. Rick es un científico extremadamente
-                    inteligente y uno de los personajes principales
-                    de la serie.
-                </p>
 
-                <img
-                    src="imagen_1.jpeg"
-                    alt="Rick Sanchez"
-                    width="300">
+            <div class="grilla-resultados">
 
-            </article>
 
-            <article>
-                <h3>Morty Smith</h3>
+                <article class="tarjeta-personaje">
 
-                <p>
-                    Estado: Vivo. Morty es el nieto de Rick y suele
-                    acompañarlo en sus aventuras interdimensionales.
-                </p>
+                    <img
+                        src="imagen_1.jpeg"
+                        alt="Rick Sanchez">
 
-                <img
-                    src="imagen_2.jpeg"
-                    alt="Morty Smith"
-                    width="300">
+                    <h3>
+                        Rick Sanchez
+                    </h3>
 
-            </article>
+                    <p>
+                        Estado: Vivo. Científico y protagonista
+                        principal de la serie.
+                    </p>
 
-            <article>
-                <h3>Summer Smith</h3>
+                    <button type="button">
+                        Ver detalle
+                    </button>
 
-                <p>
-                    Estado: Vivo. Summer es la hermana de Morty y
-                    participa en diferentes aventuras junto a Rick.
-                </p>
+                </article>
 
-                <img
-                    src="imagen_3.jpeg"
-                    alt="Summer Smith"
-                    width="300">
 
-            </article>
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_2.jpeg"
+                        alt="Morty Smith">
+
+                    <h3>
+                        Morty Smith
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Nieto de Rick y compañero
+                        de sus aventuras interdimensionales.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_3.jpeg"
+                        alt="Summer Smith">
+
+                    <h3>
+                        Summer Smith
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Hermana de Morty y nieta
+                        de Rick.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_4.jpeg"
+                        alt="Beth Smith">
+
+                    <h3>
+                        Beth Smith
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Hija de Rick y madre de
+                        Morty y Summer.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_5.jpeg"
+                        alt="Jerry Smith">
+
+                    <h3>
+                        Jerry Smith
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Es el padre de Morty y
+                        esposo de Beth.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_6.jpeg"
+                        alt="Birdperson">
+
+                    <h3>
+                        Birdperson
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Amigo de Rick y personaje
+                        importante de sus aventuras.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_7.jpeg"
+                        alt="Mr. Meeseeks">
+
+                    <h3>
+                        Mr. Meeseeks
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Criatura creada para cumplir
+                        tareas específicas.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+                <article class="tarjeta-personaje">
+
+                    <img
+                        src="imagen_8.jpeg"
+                        alt="Evil Morty">
+
+                    <h3>
+                        Evil Morty
+                    </h3>
+
+                    <p>
+                        Estado: Vivo. Una versión alternativa
+                        de Morty con sus propios objetivos.
+                    </p>
+
+                    <button type="button">
+                        Ver detalle
+                    </button>
+
+                </article>
+
+
+            </div>
 
         </section>
 
     </main>
-     <footer id="acerca">
+
+
+    <footer id="acerca">
 
         <p>
             Creado por: Juan Sebastián Betancur Galvis
@@ -148,6 +330,7 @@
         </p>
 
         <p>
+
             <a
                 href="https://rickandmortyapi.com/"
                 target="_blank"
@@ -156,10 +339,13 @@
                 Documentación de Rick and Morty API
 
             </a>
+
         </p>
 
     </footer>
 
+
 </body>
 
 </html>
+
