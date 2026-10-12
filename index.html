@@ -1,67 +1,28 @@
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Explora personajes de Rick and Morty y consulta su estado, especie, género, origen y ubicación.">
+    <meta property="og:title" content="Explorador de Rick and Morty">
+    <meta property="og:description" content="Explora personajes y descubre información del universo de Rick and Morty.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://rickandmortyapi.com/api/character/avatar/1.jpeg">
     <title>Explorador de Rick and Morty</title>
-
-    <meta
-        name="description"
-        content="Explora personajes de Rick and Morty, consulta sus datos y visualiza información detallada."
-    >
-
-    <meta
-        property="og:title"
-        content="Explorador de Rick and Morty"
-    >
-
-    <meta
-        property="og:description"
-        content="Explora personajes, estados, especies, orígenes y ubicaciones del universo de Rick and Morty."
-    >
-
-    <meta
-        property="og:type"
-        content="website"
-    >
-
-    <meta
-        property="og:image"
-        content="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-    >
-
-    <link rel="stylesheet"href="css/tailwind.css" >
-
+    <link rel="stylesheet" href="css/tailwind.css">
 </head>
-
-
-<body
-    class="min-h-dvh bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-    <header
-        class="sticky top-0 z-10 bg-white shadow dark:bg-slate-900 dark:shadow-slate-950"
-    >
-
-        <nav
-            class="relative mx-auto flex max-w-6xl items-center justify-between p-4"
-        >
-
-            <a
-                href="#inicio"
-                class="text-xl font-bold text-indigo-600 dark:text-indigo-400"
-            >
-
-                Multiverso
-                <span class="text-slate-900 dark:text-white">
-                    Explorer
-                </span>
-
-            </a>
-
+<body class="min-h-dvh bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+    <header class="sticky top-0 z-10 border-b border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
+        <nav class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 p-4">
+            <div>
+                <a href="#inicio" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">
+                    Multiverso <span class="text-slate-900 dark:text-white">Explorer</span>
+                </a>
+                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    Explora personajes y descubre información del multiverso.
+                </p>
+            </div>
 
             <button
                 id="btn-menu"
@@ -69,960 +30,179 @@
                 class="rounded-lg p-2 text-2xl text-slate-900 hover:bg-slate-100 md:hidden dark:text-white dark:hover:bg-slate-800"
                 aria-label="Abrir menú"
                 aria-controls="menu"
-                aria-expanded="false"
-            >
-
+                aria-expanded="false">
                 ☰
-
             </button>
 
-
-            <ul
-                id="menu"
-                class="absolute top-full right-0 left-0 hidden flex-col gap-1 bg-white p-4 shadow-lg
-                       md:static md:flex md:flex-row md:gap-6 md:bg-transparent md:p-0 md:shadow-none
-                       dark:bg-slate-900"
-            >
-
+            <ul id="menu" class="absolute top-full right-0 left-0 hidden flex-col gap-1 border-b border-slate-200 bg-white p-4 shadow-lg md:static md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:shadow-none dark:border-slate-700 dark:bg-slate-900">
                 <li>
-
-                    <a
-                        href="#inicio"
-                        class="block rounded-lg px-3 py-2 font-medium text-indigo-600
-                               hover:bg-slate-100 md:p-0 md:hover:bg-transparent
-                               dark:text-indigo-400 dark:hover:bg-slate-800"
-                    >
-
+                    <a href="#inicio" class="block rounded-lg px-3 py-2 font-medium text-indigo-600 hover:bg-slate-100 md:p-0 md:hover:bg-transparent dark:text-indigo-400 dark:hover:bg-slate-800">
                         Inicio
-
                     </a>
-
                 </li>
-
-
                 <li>
-
-                    <a
-                        href="#personajes"
-                        class="block rounded-lg px-3 py-2 text-slate-700
-                               hover:bg-slate-100 hover:text-indigo-600
-                               md:p-0 md:hover:bg-transparent
-                               dark:text-slate-300 dark:hover:bg-slate-800"
-                    >
-
+                    <a href="#personajes" class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100 hover:text-indigo-600 md:p-0 md:hover:bg-transparent dark:text-slate-300 dark:hover:bg-slate-800">
                         Personajes
-
                     </a>
-
                 </li>
-
-
                 <li>
-
-                    <a
-                        href="#acerca"
-                        class="block rounded-lg px-3 py-2 text-slate-700
-                               hover:bg-slate-100 hover:text-indigo-600
-                               md:p-0 md:hover:bg-transparent
-                               dark:text-slate-300 dark:hover:bg-slate-800"
-                    >
-
+                    <a href="#acerca" class="block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100 hover:text-indigo-600 md:p-0 md:hover:bg-transparent dark:text-slate-300 dark:hover:bg-slate-800">
                         Acerca de
-
                     </a>
-
                 </li>
-
             </ul>
-
         </nav>
-
     </header>
 
-    <main
-        id="inicio"
-        class="mx-auto max-w-6xl p-4"
-    >
-
-
-        <h1 class="mt-4 text-3xl font-bold md:text-4xl">
-
-            Personajes de Rick and Morty
-
-        </h1>
-
-
-        <p
-            class="mt-1 text-slate-500 dark:text-slate-400"
-        >
-
-            8 personajes de ejemplo del universo de Rick and Morty.
-
-        </p>
-
-        <form
-            class="my-6 flex flex-col gap-3 md:flex-row"
-            role="search" >
-
-            <label
-                for="busqueda"
-                class="sr-only"
-            >
-
-                Buscar personaje
-
-            </label>
-
-            <input
-                id="busqueda"
-                type="search"
-                placeholder="Buscar por nombre..."
-                minlength="2"
-                class="flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2
-                       text-slate-900 placeholder:text-slate-400
-                       focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none
-                       user-invalid:border-rose-500
-                       dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100
-                       dark:placeholder:text-slate-400 dark:focus:ring-indigo-900"
-            >
-
-
-            <label
-                for="filtro-estado"
-                class="sr-only"
-            >
-
-                Filtrar por estado
-
-            </label>
-
-
-            <select
-                id="filtro-estado"
-                class="rounded-lg border border-slate-300 bg-white px-3 py-2
-                       text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200
-                       focus:outline-none
-                       dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100
-                       dark:focus:ring-indigo-900"
-            >
-
-                <option value="">
-                    Todos los estados
-                </option>
-
-                <option value="alive">
-                    Vivos
-                </option>
-
-                <option value="dead">
-                    Muertos
-                </option>
-
-                <option value="unknown">
-                    Desconocido
-                </option>
-
-            </select>
-
-
-            <button
-                type="submit"
-                class="rounded-lg bg-indigo-600 px-5 py-2 font-semibold text-white transition
-                       hover:bg-indigo-700 active:scale-95
-                       disabled:cursor-not-allowed disabled:bg-slate-300"
-            >
-
-                Buscar
-
-            </button>
-
-        </form>
-
-        <h2
-            class="mt-6 mb-3 text-sm font-semibold tracking-wide text-slate-500 uppercase
-                   dark:text-slate-400"
-        >
-
-            Resultados
-
-        </h2>
-
-        <section
-            id="personajes"
-            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800">
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                        alt="Rick Sanchez"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105">
-
-                </div>
-
-
-                <div
-                    class="flex flex-1 flex-col gap-2 p-4"
-                >
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Rick Sanchez
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Human · Earth (C-137)
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Rick Sanchez"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Human"
-                        data-origen="Earth (C-137)"
-                        data-ubicacion="Citadel of Ricks"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-                        alt="Morty Smith"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Morty Smith
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Human · unknown
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Morty Smith"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Human"
-                        data-origen="unknown"
-                        data-ubicacion="Citadel of Ricks"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/3.jpeg"
-                        alt="Summer Smith"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Summer Smith
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Human · Earth (Replacement Dimension)
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Summer Smith"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/3.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Human"
-                        data-origen="Earth (Replacement Dimension)"
-                        data-ubicacion="Earth (Replacement Dimension)"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/4.jpeg"
-                        alt="Beth Smith"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Beth Smith
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Human · Earth (Replacement Dimension)
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Beth Smith"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/4.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Human"
-                        data-origen="Earth (Replacement Dimension)"
-                        data-ubicacion="Earth (Replacement Dimension)"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/5.jpeg"
-                        alt="Jerry Smith"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Jerry Smith
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Human · Earth (Replacement Dimension)
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Jerry Smith"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/5.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Human"
-                        data-origen="Earth (Replacement Dimension)"
-                        data-ubicacion="Earth (Replacement Dimension)"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/47.jpeg"
-                        alt="Birdperson"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Birdperson
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Alien · Bird World
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Birdperson"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/47.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Alien"
-                        data-origen="Bird World"
-                        data-ubicacion="Bird World"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/242.jpeg"
-                        alt="Mr. Meeseeks"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Mr. Meeseeks
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-emerald-100 px-2.5 py-0.5
-                               text-xs font-semibold text-emerald-700
-                               dark:bg-emerald-900/40 dark:text-emerald-300"
-                    >
-
-                        ● Vivo
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Humanoid · Earth (Replacement Dimension)
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Mr. Meeseeks"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/242.jpeg"
-                        data-estado="Vivo"
-                        data-especie="Humanoid"
-                        data-origen="Earth (Replacement Dimension)"
-                        data-ubicacion="Mr. Meeseeks Box"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article
-                class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow transition
-                       hover:-translate-y-1 hover:shadow-xl
-                       dark:bg-slate-800"
-            >
-
-                <div class="overflow-hidden">
-
-                    <img
-                        src="https://rickandmortyapi.com/api/character/avatar/118.jpeg"
-                        alt="Evil Morty"
-                        class="aspect-square w-full object-cover transition group-hover:scale-105"
-                    >
-
-                </div>
-
-
-                <div class="flex flex-1 flex-col gap-2 p-4">
-
-                    <h3
-                        class="text-lg font-bold text-slate-900 dark:text-white"
-                    >
-
-                        Evil Morty
-
-                    </h3>
-
-
-                    <span
-                        class="w-fit rounded-full bg-slate-200 px-2.5 py-0.5
-                               text-xs font-semibold text-slate-600
-                               dark:bg-slate-700 dark:text-slate-300"
-                    >
-
-                        ● Desconocido
-
-                    </span>
-
-
-                    <p
-                        class="text-sm text-slate-500 dark:text-slate-400"
-                    >
-
-                        Human · unknown
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="btn-detalle mt-auto rounded-lg bg-indigo-600 py-2
-                               font-semibold text-white transition hover:bg-indigo-700
-                               focus-visible:outline-2 focus-visible:outline-offset-2
-                               focus-visible:outline-indigo-600"
-                        data-nombre="Evil Morty"
-                        data-imagen="https://rickandmortyapi.com/api/character/avatar/118.jpeg"
-                        data-estado="Desconocido"
-                        data-especie="Human"
-                        data-origen="unknown"
-                        data-ubicacion="Citadel of Ricks"
-                    >
-
-                        Ver detalle
-
-                    </button>
-
-                </div>
-
-            </article>
-
-
+    <main id="inicio" class="mx-auto max-w-6xl p-4">
+        <section class="py-4">
+            <h1 class="text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+                Personajes de Rick and Morty
+            </h1>
+            <p class="mt-2 text-slate-600 dark:text-slate-400">
+                Ocho personajes de ejemplo con datos de la Rick and Morty API.
+            </p>
         </section>
 
-    </main>
-
-    <footer
-        id="acerca"
-        class="mt-12 border-t border-slate-200 py-6 text-center text-sm
-               text-slate-500
-               dark:border-slate-700 dark:text-slate-400"
-    >
-
-        Datos:
-
-        <a
-            href="https://rickandmortyapi.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline hover:text-indigo-600 dark:hover:text-indigo-400"
-        >
-
-            The Rick and Morty API
-            <p creado: Juan Sebastian Betancur>
-                
-            </p>  
-
-        </a>
-
-    </footer>
-
-    <dialog
-        id="modal-detalle"
-        aria-labelledby="modal-nombre"
-        class="m-auto w-full max-w-md overflow-hidden rounded-2xl bg-white p-0
-               text-slate-900 shadow-2xl
-               backdrop:bg-slate-900/60 backdrop:backdrop-blur-sm
-               dark:bg-slate-800 dark:text-slate-100"
-    >
-
-        <img
-            id="modal-img"
-            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-            alt="Rick Sanchez"
-            class="aspect-square w-full object-cover"
-        >
-
-
-        <div class="space-y-4 p-6">
-
-
-            <h2
-                id="modal-nombre"
-                class="text-2xl font-bold text-slate-900 dark:text-white"
-            >
-
-                Rick Sanchez
-
+        <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+                Buscar personajes
             </h2>
 
+            <form id="form-busqueda" class="mt-4 flex flex-col gap-4 md:flex-row md:items-end" role="search">
+                <div class="flex-1">
+                    <label for="busqueda" class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Buscar por nombre
+                    </label>
+                    <input
+                        id="busqueda"
+                        name="busqueda"
+                        type="search"
+                        placeholder="Ejemplo: Rick"
+                        class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:ring-indigo-900">
+                </div>
 
-            <dl
-                class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm"
-            >
+                <div class="md:w-48">
+                    <label for="filtro-estado" class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Estado
+                    </label>
+                    <select id="filtro-estado" name="estado" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-indigo-900">
+                        <option value="">Todos</option>
+                        <option value="alive">Vivos</option>
+                        <option value="dead">Muertos</option>
+                        <option value="unknown">Desconocido</option>
+                    </select>
+                </div>
 
-                <dt class="text-slate-500 dark:text-slate-400">
-                    Estado
-                </dt>
+                <div class="md:w-48">
+                    <label for="filtro-especie" class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Especie
+                    </label>
+                    <select id="filtro-especie" name="especie" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-indigo-900">
+                        <option value="">Todas</option>
+                        <option value="Human">Human</option>
+                        <option value="Alien">Alien</option>
+                        <option value="Humanoid">Humanoid</option>
+                    </select>
+                </div>
 
-                <dd
-                    id="modal-estado"
-                    class="font-medium text-slate-900 dark:text-slate-100"
-                >
+                <div class="md:w-48">
+                    <label for="filtro-genero" class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Género
+                    </label>
+                    <select id="filtro-genero" name="genero" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-indigo-900">
+                        <option value="">Todos</option>
+                        <option value="Male">Masculino</option>
+                        <option value="Female">Femenino</option>
+                        <option value="Genderless">Sin género</option>
+                        <option value="unknown">Desconocido</option>
+                    </select>
+                </div>
 
-                    Vivo
+                <button type="submit" class="rounded-lg bg-indigo-600 px-5 py-2.5 font-semibold text-white transition hover:bg-indigo-700 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Buscar
+                </button>
+            </form>
+        </section>
 
-                </dd>
+        <section id="personajes" class="mt-8">
+            <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                        Personajes
+                    </h2>
+                    <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                        Selecciona cualquier personaje para ver todos sus datos.
+                    </p>
+                </div>
+                <span id="contador" class="w-fit rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300">
+                    8 personajes
+                </span>
+            </div>
 
+            <div id="grilla" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
 
-                <dt class="text-slate-500 dark:text-slate-400">
-                    Especie
-                </dt>
+            <p id="mensaje-vacio" class="hidden mt-4 rounded-2xl bg-white p-8 text-center text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                Ningún personaje coincide con los filtros.
+            </p>
+        </section>
+    </main>
 
-                <dd
-                    id="modal-especie"
-                    class="font-medium text-slate-900 dark:text-slate-100"
-                >
+    <footer id="acerca" class="mt-12 border-t border-slate-200 px-4 py-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+        <p>Creado por: Juan Sebastián Betancur Galvis</p>
+        <p class="mt-1">Curso: Programación para entornos web</p>
+        <p class="mt-1">
+            Datos:
+            <a href="https://rickandmortyapi.com/" target="_blank" rel="noopener noreferrer" class="font-semibold underline hover:text-indigo-600 dark:hover:text-indigo-400">
+                The Rick and Morty API
+            </a>
+        </p>
+    </footer>
 
-                    Human
+    <dialog id="modal-detalle" aria-labelledby="modal-nombre" class="m-auto w-[calc(100%-2rem)] max-w-md overflow-hidden rounded-2xl bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-900/60 backdrop:backdrop-blur-sm dark:bg-slate-800 dark:text-slate-100">
+        <img id="modal-img" src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez" class="aspect-[3/2] w-full object-cover">
 
-                </dd>
+        <div class="space-y-5 p-6">
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
+                    Detalle del personaje
+                </p>
+                <h2 id="modal-nombre" class="mt-1 text-2xl font-bold text-slate-900 dark:text-white">
+                    Rick Sanchez
+                </h2>
+            </div>
 
-
-                <dt class="text-slate-500 dark:text-slate-400">
-                    Origen
-                </dt>
-
-                <dd
-                    id="modal-origen"
-                    class="font-medium text-slate-900 dark:text-slate-100"
-                >
-
-                    Earth (C-137)
-
-                </dd>
-
-
-                <dt class="text-slate-500 dark:text-slate-400">
-                    Ubicación
-                </dt>
-
-                <dd
-                    id="modal-ubicacion"
-                    class="font-medium text-slate-900 dark:text-slate-100"
-                >
-
-                    Citadel of Ricks
-
-                </dd>
-
+            <dl class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+                <div class="rounded-lg bg-slate-100 p-3 dark:bg-slate-700">
+                    <dt class="text-slate-500 dark:text-slate-400">Estado</dt>
+                    <dd id="modal-estado" class="mt-1 font-semibold text-slate-900 dark:text-slate-100">Vivo</dd>
+                </div>
+                <div class="rounded-lg bg-slate-100 p-3 dark:bg-slate-700">
+                    <dt class="text-slate-500 dark:text-slate-400">Especie</dt>
+                    <dd id="modal-especie" class="mt-1 font-semibold text-slate-900 dark:text-slate-100">Human</dd>
+                </div>
+                <div class="rounded-lg bg-slate-100 p-3 dark:bg-slate-700">
+                    <dt class="text-slate-500 dark:text-slate-400">Género</dt>
+                    <dd id="modal-genero" class="mt-1 font-semibold text-slate-900 dark:text-slate-100">Masculino</dd>
+                </div>
+                <div class="rounded-lg bg-slate-100 p-3 dark:bg-slate-700">
+                    <dt class="text-slate-500 dark:text-slate-400">Origen</dt>
+                    <dd id="modal-origen" class="mt-1 font-semibold text-slate-900 dark:text-slate-100">Earth (C-137)</dd>
+                </div>
+                <div class="rounded-lg bg-slate-100 p-3 sm:col-span-2 dark:bg-slate-700">
+                    <dt class="text-slate-500 dark:text-slate-400">Ubicación</dt>
+                    <dd id="modal-ubicacion" class="mt-1 font-semibold text-slate-900 dark:text-slate-100">Citadel of Ricks</dd>
+                </div>
             </dl>
 
-
             <form method="dialog">
-
-                <button
-                    class="w-full rounded-lg border border-slate-300 py-2
-                           font-semibold text-slate-900 hover:bg-slate-100
-                           dark:border-slate-600 dark:text-slate-100
-                           dark:hover:bg-slate-700"
-                >
-
+                <button class="w-full rounded-lg border border-slate-300 py-2.5 font-semibold text-slate-900 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-700">
                     Cerrar
-
                 </button>
-
             </form>
-
         </div>
-
     </dialog>
 
-
-
-    <script>
-
-        const btnMenu = document.getElementById('btn-menu');
-        const menu = document.getElementById('menu');
-
-        btnMenu.addEventListener('click', function () {
-
-            menu.classList.toggle('hidden');
-
-            const abierto = !menu.classList.contains('hidden');
-
-            btnMenu.setAttribute('aria-expanded', abierto);
-
-        });
-
-
-        const modal = document.getElementById('modal-detalle');
-
-
-        document.querySelectorAll('.btn-detalle').forEach(function (boton) {
-
-            boton.addEventListener('click', function () {
-
-                const datos = boton.dataset;
-
-                document.getElementById('modal-nombre').textContent =
-                    datos.nombre;
-
-                document.getElementById('modal-img').src =
-                    datos.imagen;
-
-                document.getElementById('modal-img').alt =
-                    datos.nombre;
-
-                document.getElementById('modal-estado').textContent =
-                    datos.estado;
-
-                document.getElementById('modal-especie').textContent =
-                    datos.especie;
-
-                document.getElementById('modal-origen').textContent =
-                    datos.origen;
-
-                document.getElementById('modal-ubicacion').textContent =
-                    datos.ubicacion;
-
-                modal.showModal();
-
-            });
-
-        });
-
-
-        modal.addEventListener('click', function (evento) {
-
-            if (evento.target === modal) {
-
-                modal.close();
-
-            }
-
-        });
-
-    </script>
-
-
+    <script type="module" src="js/app.js"></script>
 </body>
-       
 </html>
-
-
-
