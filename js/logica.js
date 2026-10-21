@@ -1,9 +1,14 @@
+// js/logica.js
+// Funciones puras: reciben datos y devuelven datos.
+// No manipulan el DOM.
 
 export const filtrarPersonajes = (lista, filtros) => {
     const texto = filtros.texto.trim().toLowerCase();
 
     return lista
-        .filter((personaje) => personaje.name.toLowerCase().includes(texto))
+        .filter((personaje) =>
+            personaje.name.toLowerCase().includes(texto)
+        )
         .filter((personaje) =>
             filtros.estado === '' ||
             personaje.status.toLowerCase() === filtros.estado.toLowerCase()
@@ -18,9 +23,12 @@ export const filtrarPersonajes = (lista, filtros) => {
         );
 };
 
-export const contarVivos = (lista) =>
-    lista.reduce((total, personaje) =>
-        personaje.status === 'Alive' ? total + 1 : total, 0);
+export const contarVivos = (lista) => {
+    return lista.reduce((total, personaje) => {
+        return personaje.status === 'Alive' ? total + 1 : total;
+    }, 0);
+};
 
-export const buscarPorId = (lista, id) =>
-    lista.find((personaje) => personaje.id === id);
+export const buscarPorId = (lista, id) => {
+    return lista.find((personaje) => personaje.id === id);
+};
