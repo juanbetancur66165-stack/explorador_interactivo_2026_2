@@ -1,5 +1,5 @@
 // js/app.js
-// Controla la interfaz, la API, los filtros y los favoritos.
+// Control de la interfaz del explorador.
 
 import { URL_PERSONAJES, obtenerPersonajes } from './api.js';
 
@@ -47,7 +47,7 @@ const modal = document.querySelector('#modal-detalle');
 const btnMenu = document.querySelector('#btn-menu');
 const menu = document.querySelector('#menu');
 
-// Estados que devuelve la API.
+// Información de los estados.
 const ESTADOS = {
     Alive: {
         texto: 'Vivo',
@@ -71,12 +71,14 @@ const GENEROS = {
     unknown: 'Desconocido'
 };
 
-// Estilos de los enlaces del menú.
-const CLASES_ENLACE = {
-    activo: 'block rounded-lg px-3 py-2 font-medium text-indigo-600 hover:bg-slate-100 md:p-0 md:hover:bg-transparent dark:text-indigo-400 dark:hover:bg-slate-800',
-    inactivo: 'block rounded-lg px-3 py-2 text-slate-700 hover:bg-slate-100 hover:text-indigo-600 md:p-0 md:hover:bg-transparent dark:text-slate-300 dark:hover:bg-slate-800'
-};
+// Clases de Tailwind para los enlaces.
+// Estilo de la opción seleccionada.
+const CLASE_ENLACE_ACTIVO =
+    'block rounded-xl border border-[#97CE4C]/50 bg-[#97CE4C]/15 px-4 py-2.5 font-bold text-[#97CE4C] shadow-sm shadow-[#97CE4C]/10 transition hover:bg-[#97CE4C]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#97CE4C]';
 
+// Estilo de las opciones no seleccionadas.
+const CLASE_ENLACE_INACTIVO =
+    'block rounded-xl border border-transparent px-4 py-2.5 font-semibold text-[#97CE4C] transition hover:border-[#97CE4C]/40 hover:bg-[#97CE4C]/10 hover:text-[#B8E986] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#97CE4C]';
 // Evita insertar caracteres HTML como si fueran etiquetas.
 const escaparHTML = (valor = '') => {
     return String(valor).replace(/[&<>"']/g, (caracter) => {
@@ -92,68 +94,88 @@ const escaparHTML = (valor = '') => {
     });
 };
 
-// Devuelve la lista que corresponde a la vista seleccionada.
+// Devuelve la lista según la vista seleccionada.
 const listaActual = () => {
     return vista === 'favoritos' ? favoritos : personajes;
 };
 
-// Genera una tarjeta con su corazón y botón de detalle.
-
+// Crea las tarjetas utilizando exclusivamente clases de Tailwind.
+// Crea las tarjetas con colores turquesa y azul.
+// Crea las tarjetas con la identidad visual de Rick and Morty.
 const tarjetaHTML = (personaje) => {
     const estado = ESTADOS[personaje.status] ?? ESTADOS.unknown;
     const favorito = esFavorito(favoritos, personaje.id);
 
+    const clasesCorazon = favorito
+        ? 'border-rose-200 bg-rose-50 text-rose-600 hover:bg-rose-100 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-400'
+        : 'border-slate-200 bg-white text-slate-500 hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-rose-950 dark:hover:text-rose-400';
+
     return `
-        <article class="relative group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800">
-            <div class="overflow-hidden">
+        <article class="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border-2 border-[#97CE4C]/70 bg-[#F8FCE F] shadow-md shadow-lime-900/10 transition duration-200 hover:-translate-y-1 hover:border-[#97CE4C] hover:shadow-xl dark:border-lime-800 dark:bg-slate-800">
+
+            <div class="grid h-[248px] w-full place-items-center overflow-hidden border-b-2 border-[#97CE4C]/50 bg-gradient-to-br from-[#F1FADB] to-[#D9F99D] p-3 dark:border-lime-900 dark:from-slate-800 dark:to-lime-950">
+
                 <img
-                    src="${personaje.image}"
-                    alt="${personaje.name}"
-                    class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105">
+                    src="${escaparHTML(personaje.image)}"
+                    alt="${escaparHTML(personaje.name)}"
+                    loading="lazy"
+                    class="block h-full w-full object-contain object-center"
+                >
+
             </div>
 
             <button
                 type="button"
-                data-fav="${personaje.id}"
+                data-fav="${Number(personaje.id)}"
                 aria-pressed="${favorito}"
                 aria-label="${favorito ? 'Quitar de favoritos' : 'Agregar a favoritos'}"
-                class="absolute top-2 right-2 grid size-10 place-items-center rounded-full bg-white/90 text-2xl text-rose-600 shadow transition hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-slate-900/80">
+                title="${favorito ? 'Quitar de favoritos' : 'Agregar a favoritos'}"
+                class="absolute right-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full border p-0 text-3xl leading-none shadow-md transition hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500 ${clasesCorazon}"
+            >
                 ${favorito ? '♥' : '♡'}
             </button>
 
-            <div class="flex flex-1 flex-col gap-2 p-4">
+            <div class="flex flex-1 flex-col gap-3 bg-[#F8FCEF] p-4 dark:bg-slate-800">
+
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white">
-                    ${personaje.name}
+                    ${escaparHTML(personaje.name)}
                 </h3>
 
-                <span class="w-fit rounded-full px-2.5 py-0.5 text-xs font-semibold ${estado.clases}">
+                <span class="w-fit rounded-full px-3 py-1 text-xs font-bold ${estado.clases}">
                     ● ${estado.texto}
                 </span>
 
-                <p class="text-sm text-slate-500 dark:text-slate-400">
-                    ${personaje.species} · ${personaje.origin.name}
-                </p>
+                <div class="text-sm text-slate-600 dark:text-slate-300">
+                    <p>
+                        <span class="font-semibold text-[#476B1C] dark:text-lime-300">Especie:</span>
+                        ${escaparHTML(personaje.species)}
+                    </p>
 
-                <button
-                    type="button"
-                    data-id="${personaje.id}"
-                    class="mt-auto rounded-lg bg-indigo-600 py-2 font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Ver detalle
-                </button>
+                    <p class="mt-2">
+                        <span class="font-semibold text-[#476B1C] dark:text-lime-300">Origen:</span>
+                        ${escaparHTML(personaje.origin?.name || 'Desconocido')}
+                    </p>
+                </div>
+
+            <button
+             type="button"
+             data-id="${Number(personaje.id)}"
+            class="mt-auto w-full rounded-lg bg-[#081923] py-2.5 font-semibold text-white shadow-md shadow-slate-950/20 transition hover:bg-[#103444] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#97CE4C]"
+            >
+              Ver detalle
+              </button>
+
             </div>
         </article>
     `;
 };
-
-
-// Abre el modal con los datos del personaje.
+// Abre el modal de detalles.
 const abrirDetalle = (personaje) => {
     if (!personaje) {
         return;
     }
 
-    const estado =
-        ESTADOS[personaje.status] || ESTADOS.unknown;
+    const estado = ESTADOS[personaje.status] ?? ESTADOS.unknown;
 
     const especie = personaje.type
         ? `${personaje.species} (${personaje.type})`
@@ -174,9 +196,7 @@ const abrirDetalle = (personaje) => {
         especie;
 
     document.querySelector('#modal-genero').textContent =
-        GENEROS[personaje.gender] ||
-        personaje.gender ||
-        'Desconocido';
+        GENEROS[personaje.gender] || personaje.gender || 'Desconocido';
 
     document.querySelector('#modal-origen').textContent =
         personaje.origin?.name || 'Desconocido';
@@ -184,10 +204,12 @@ const abrirDetalle = (personaje) => {
     document.querySelector('#modal-ubicacion').textContent =
         personaje.location?.name || 'Desconocido';
 
-    modal.showModal();
+    if (!modal.open) {
+        modal.showModal();
+    }
 };
 
-// Actualiza el título y el enlace activo.
+// Actualiza el menú según la vista seleccionada.
 const actualizarNavegacion = () => {
     tituloLista.textContent = vista === 'favoritos'
         ? 'Tus personajes favoritos'
@@ -197,8 +219,8 @@ const actualizarNavegacion = () => {
         const activo = enlace.dataset.vista === vista;
 
         enlace.className = activo
-            ? CLASES_ENLACE.activo
-            : CLASES_ENLACE.inactivo;
+            ? CLASE_ENLACE_ACTIVO
+            : CLASE_ENLACE_INACTIVO;
 
         if (activo) {
             enlace.setAttribute('aria-current', 'page');
@@ -208,7 +230,8 @@ const actualizarNavegacion = () => {
     });
 };
 
-// Controla el botón de paginación.
+// Actualiza el botón de paginación.
+// Actualiza el botón para cargar más personajes.
 const actualizarBotonMas = () => {
     const puedeCargarMas =
         vista === 'todos' &&
@@ -219,15 +242,15 @@ const actualizarBotonMas = () => {
     btnMas.disabled = cargando;
 
     if (cargando && personajes.length > 0) {
-        btnMas.textContent = 'Cargando…';
+        btnMas.textContent = 'Cargando personajes…';
     } else if (error && personajes.length > 0) {
-        btnMas.textContent = 'No se pudo cargar. Reintentar';
+        btnMas.textContent = 'Reintentar carga';
     } else {
-        btnMas.textContent = 'Cargar más';
+        btnMas.textContent = 'Más personajes';
     }
 };
 
-// Actualiza la interfaz a partir del estado de la aplicación.
+// Dibuja la interfaz.
 const render = () => {
     actualizarNavegacion();
     actualizarBotonMas();
@@ -239,7 +262,7 @@ const render = () => {
     const sinDatosAPI =
         vista === 'todos' && personajes.length === 0;
 
-    // Estado 1: cargando.
+    // Estado de carga inicial.
     if (sinDatosAPI && cargando) {
         grilla.innerHTML = `
             <p class="col-span-full animate-pulse rounded-2xl bg-white p-8 text-center text-slate-500 dark:bg-slate-800 dark:text-slate-400">
@@ -251,10 +274,10 @@ const render = () => {
         return;
     }
 
-    // Estado 2: error inicial con opción para reintentar.
+    // Error durante la primera consulta.
     if (sinDatosAPI && error) {
         grilla.innerHTML = `
-            <div class="col-span-full rounded-2xl bg-white p-8 text-center dark:bg-slate-800">
+            <div class="col-span-full rounded-2xl border border-rose-200 bg-white p-8 text-center dark:border-rose-900 dark:bg-slate-800">
 
                 <p class="font-semibold text-rose-600 dark:text-rose-400">
                     No pudimos cargar los personajes.
@@ -264,14 +287,10 @@ const render = () => {
                     Revisa tu conexión e inténtalo de nuevo.
                 </p>
 
-                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                    ${escaparHTML(error)}
-                </p>
-
                 <button
                     type="button"
                     data-reintentar
-                    class="mt-4 rounded-lg bg-indigo-600 px-5 py-2 font-semibold text-white transition hover:bg-indigo-700"
+                    class="mt-4 rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white transition hover:bg-blue-700"
                 >
                     Reintentar
                 </button>
@@ -283,10 +302,10 @@ const render = () => {
         return;
     }
 
-    // Si falla una página adicional, conserva los resultados anteriores.
+    // Si falla una página adicional, conservamos las anteriores.
     if (vista === 'todos' && error && personajes.length > 0) {
         mensajeError.textContent =
-            'No pudimos cargar más personajes. Tus resultados anteriores siguen disponibles. Pulsa el botón de paginación para reintentar.';
+            'No se pudieron cargar más personajes. Pulsa el botón de paginación para reintentar.';
 
         mensajeError.classList.remove('hidden');
     }
@@ -294,7 +313,7 @@ const render = () => {
     const lista = listaActual();
     const visibles = filtrarPersonajes(lista, filtros);
 
-    // Estado vacío.
+    // Cuando no hay resultados.
     if (visibles.length === 0) {
         grilla.innerHTML = '';
 
@@ -305,35 +324,40 @@ const render = () => {
 
         mensajeVacio.classList.remove('hidden');
     } else {
-        grilla.innerHTML = visibles
-            .map(tarjetaHTML)
-            .join('');
+        grilla.innerHTML = visibles.map(tarjetaHTML).join('');
     }
 
-    const tipoLista =
-        vista === 'favoritos' ? 'favoritos' : 'personajes';
-
     contador.textContent =
-        `${visibles.length} de ${lista.length} ${tipoLista} · ${contarVivos(visibles)} vivos`;
+        `${visibles.length} de ${lista.length} ${vista === 'favoritos' ? 'favoritos' : 'personajes'} · ${contarVivos(visibles)} vivos`;
 };
 
-// Consulta la API y administra la paginación.
-const cargar = async () => {
+// Consulta la API y carga la siguiente página.
+// Carga una o varias páginas de personajes.
+const cargar = async (cantidadPaginas = 1) => {
     if (cargando || !siguiente) {
         return;
     }
 
-    const urlSolicitada = siguiente;
-
     cargando = true;
     error = null;
+
     render();
 
     try {
-        const datos = await obtenerPersonajes(urlSolicitada);
+        for (
+            let i = 0;
+            i < cantidadPaginas && siguiente !== null;
+            i++
+        ) {
+            const datos = await obtenerPersonajes(siguiente);
 
-        personajes = [...personajes, ...datos.results];
-        siguiente = datos.info.next;
+            personajes = [
+                ...personajes,
+                ...datos.results
+            ];
+
+            siguiente = datos.info.next;
+        }
     } catch (fallo) {
         error = fallo instanceof Error
             ? fallo.message
@@ -345,19 +369,16 @@ const cargar = async () => {
         render();
     }
 };
-
-// Delegación: un solo evento controla los botones de la grilla.
+// Eventos de la cuadrícula.
 grilla.addEventListener('click', (evento) => {
-    // Reintentar cuando falla la primera petición.
-    const botonReintentar =
-        evento.target.closest('[data-reintentar]');
+    const botonReintentar = evento.target.closest('[data-reintentar]');
 
     if (botonReintentar) {
         cargar();
         return;
     }
 
-    // AGREGAR O QUITAR FAVORITOS.
+    // Agregar o quitar favoritos.
     const botonFavorito = evento.target.closest('[data-fav]');
 
     if (botonFavorito) {
@@ -369,21 +390,17 @@ grilla.addEventListener('click', (evento) => {
         );
 
         if (personaje) {
-            favoritos = alternarFavorito(
-                favoritos,
-                personaje
-            );
+            favoritos = alternarFavorito(favoritos, personaje);
 
             guardarFavoritos(favoritos);
 
-            // Actualiza el corazón y la vista de inmediato.
             render();
         }
 
         return;
     }
 
-    // Abrir el modal.
+    // Abrir los detalles.
     const botonDetalle = evento.target.closest('[data-id]');
 
     if (botonDetalle) {
@@ -398,7 +415,7 @@ grilla.addEventListener('click', (evento) => {
     }
 });
 
-// Cambiar entre Personajes y Favoritos.
+// Eventos de navegación.
 menu.addEventListener('click', (evento) => {
     const enlaceVista = evento.target.closest('[data-vista]');
 
@@ -414,6 +431,7 @@ menu.addEventListener('click', (evento) => {
         evento.target.closest('a')
     ) {
         menu.classList.add('hidden');
+
         btnMenu.setAttribute('aria-expanded', 'false');
         btnMenu.setAttribute('aria-label', 'Abrir menú');
     }
@@ -433,46 +451,44 @@ btnMenu.addEventListener('click', () => {
     );
 });
 
-// Buscador.
+// Búsqueda por nombre.
 busqueda.addEventListener('input', (evento) => {
     filtros.texto = evento.target.value;
     render();
 });
 
-// Filtro de estado.
+// Filtros.
 filtroEstado.addEventListener('change', (evento) => {
     filtros.estado = evento.target.value;
     render();
 });
 
-// Filtro de especie.
 filtroEspecie.addEventListener('change', (evento) => {
     filtros.especie = evento.target.value;
     render();
 });
 
-// Filtro de género.
 filtroGenero.addEventListener('change', (evento) => {
     filtros.genero = evento.target.value;
     render();
 });
 
-// Impide que el formulario recargue la página.
+// Evita que el formulario recargue la página.
 formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();
 });
 
-// Cargar otra página.
+// Cargar más personajes.
 btnMas.addEventListener('click', () => {
-    cargar();
+    cargar(2);
 });
 
-// Cerrar el modal al pulsar el fondo.
+// Cerrar el modal al pulsar fuera de su contenido.
 modal.addEventListener('click', (evento) => {
     if (evento.target === modal) {
         modal.close();
     }
 });
 
-// Iniciar la aplicación.
+// Iniciar el explorador.
 cargar();
