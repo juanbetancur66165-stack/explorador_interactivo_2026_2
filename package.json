@@ -11,5 +11,8 @@
     "@tailwindcss/cli": "^4.3.3",
     "html-validate": "^11.18.0",
     "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.1": true
   }
 }
