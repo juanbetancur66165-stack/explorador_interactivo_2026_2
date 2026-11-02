@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "tailwindcss -i ./src/entrada.css -o ./css/tailwind.css --watch",
-    "build": "tailwindcss -i ./src/entrada.css -o ./css/tailwind.css",
+    "dev": "npx @tailwindcss/cli -i ./src/entrada.css -o ./css/tailwind.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/entrada.css -o ./css/tailwind.css",
     "validar": "html-validate index.html"
   },
   "devDependencies": {
